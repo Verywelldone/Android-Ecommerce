@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,12 +21,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.ecommerce.model.Products;
 import com.example.ecommerce.prevalent.Prevalent;
+import com.example.ecommerce.viewholder.ProductViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -94,34 +100,33 @@ public class HomeActivity extends AppCompatActivity
     {
         super.onStart();
 
-//        FirebaseRecyclerOptions<Products> options =
-//                new FirebaseRecyclerOptions.Builder<Products>()
-//                        .setQuery(ProductsRef, Products.class)
-//                        .build();
-//
-//
-//        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-//                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-//                    @Override
-//                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
-//                    {
-//                        holder.txtProductName.setText(model.getPname());
-//                        holder.txtProductDescription.setText(model.getDescription());
-//                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
-//                        Picasso.get().load(model.getImage()).into(holder.imageView);
-//                    }
-//
-//                    @NonNull
-//                    @Override
-//                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-//                    {
-//                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
-//                        ProductViewHolder holder = new ProductViewHolder(view);
-//                        return holder;
-//                    }
-//                };
-//        recyclerView.setAdapter(adapter);
-//        adapter.startListening();
+        FirebaseRecyclerOptions<Products> options =
+                new FirebaseRecyclerOptions.Builder<Products>()
+                        .setQuery(ProductsRef, Products.class)
+                        .build();
+
+
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
+                    {
+                        holder.txtProductName.setText(model.getPname());
+                        holder.txtProductDescription.setText(model.getDescription());
+                        holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
+                    }
+
+                    @NonNull
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+                    {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
+                        return new ProductViewHolder(view);
+                    }
+                };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
 
     @Override
