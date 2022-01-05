@@ -118,8 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this, "Logged in Succesfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
-//                                     TODO: MainActivity should be restored to HomeActivity
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    Prevalent.currentOnlineUser = userData;
                                     startActivity(intent);
                                 }
 
