@@ -176,7 +176,7 @@ public class SettinsActivity extends AppCompatActivity {
 
                                 progressDialog.dismiss();
 
-                                startActivity(new Intent(SettinsActivity.this, MainActivity.class));
+                                startActivity(new Intent(SettinsActivity.this, HomeActivity.class));
                                 Toast.makeText(SettinsActivity.this, "Profile Info update successfuly",Toast.LENGTH_SHORT).show();
                                 finish();
                             }else{
