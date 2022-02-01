@@ -4,6 +4,8 @@ public class Users {
     private String username;
     private String password;
     private String phoneNumber;
+    private String image;
+    private String address;
 
 
     public Users(String username, String password, String phoneNumber) {
@@ -15,6 +17,13 @@ public class Users {
     public Users() {
     }
 
+    public Users(String username, String password, String phoneNumber, String image, String address) {
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.image = image;
+        this.address = address;
+    }
 
     public String getUsername() {
         return username;
@@ -38,5 +47,21 @@ public class Users {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
